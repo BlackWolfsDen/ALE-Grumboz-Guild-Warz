@@ -152,13 +152,6 @@ local function GetLocationId(player)
 	end
 end
 
---[[
-function GetLocationId(player, unit)
-	local Locdb=WorldDBQuery("SELECT `entry` FROM guild_warz.zones WHERE `map_id`='"..player:GetMapId().."' AND `area_id`='"..player:GetAreaId().."' and `zone_id`='"..player:GetZoneId().."';");
-	return Locdb:GetColumn(0):GetULong() or 0;
-end
-]]--
-
 local function PreparedStatements(key, ...)
 	local Query = {
 		[1] = "UPDATE guild_warz.zones SET `%s` = '%s' WHERE `entry` = '%s';",
@@ -205,7 +198,7 @@ function CreateLocation(map, area, zone)
 end
 
 function CreateGcommands(guild)
-	local CLentry = guild --(#GWCOMM+1) -- should create varchar entry of guild name
+	local CLentry = guild
 	WorldDBQuery("INSERT INTO guild_warz.commands SET `guild` = '"..guild.."';");
 	print("commands for: "..CLentry.." : created.")	
 	
@@ -1049,9 +1042,13 @@ end
 RegisterGameObjectEvent(187433, 4, "Hordeflag")
 
 -- *********** Guild Guard combat actions *************
--- these are just basic scripts for the guards. if some one can script a good guard script with the idea in mind to keep them from the flag. I would love to add it.
+-- these are just basic scripts for the guards. if some one can write a good guard script with the idea in mind 
+-- to keep them from the flag. I would love to add it.
 
 --[[
+this is part of the Anarchy switch
+so far only Eluna supports this(if players not of xx guild get near guards then hell breaks loose)
+
 function Guardffa(eventid, creature, player)
 	local LocId = GetLocationId(creature)
 	
@@ -1073,10 +1070,10 @@ function Guardffa(eventid, creature, player)
 	else
 	end 
 end
-]]--
 
 RegisterCreatureEvent(49001, 2, Guardffa)
 RegisterCreatureEvent(49002, 2, Guardffa)
+]]--
 
 
 function Guardcombat(creature, eventid, player)
