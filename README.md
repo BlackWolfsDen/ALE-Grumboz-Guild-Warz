@@ -30,7 +30,7 @@ to set the sell command type "set sell 1"
 to change settings as the Admin:
 it is basicly the same as a Guildmaster
 to change amount of farms per location just type "set farm_L 2"
-`farm_L` is mount limit. now you may have 2 farms per location.
+`farm_L` is amount limit. now you may have 2 farms per location.
 use "help set" to list available settings you may change with a basic description and example
 use "help farm_L" to get specific help with changing something rather than a full screen from "help set".
 the GM_minimum setting is the minimum level a gm must be to acces gm commands.
