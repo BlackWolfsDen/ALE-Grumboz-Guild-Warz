@@ -10,37 +10,36 @@ what is this ... well this is an alternate perspective for PvP. you can PvP bg'z
 
 ok now how to basics:
 first of course you must be in a guild.
-you must be in guild chat "/guild"
 basic commands are:
-type /guild commands for a complete list of commands available to you.
+type commands for a complete list of commands available to you.
 the buy commands are accessible by guild members of a certain level chosen by the guild master
 the sell commands are accessible by guild members of a certain level chosen by the guild master
 the guild master can change what ranks can access buy/sell commands by using the set command.
 Adminz can change system settings, amounts, and values using the set command.
 
-to purchase a farm just type /guild buy farm
-to purchase a location not owned by another guild other than "SERVER" just type /guild buy area
+to purchase a farm just type "buy farm"
+to purchase a location not owned by another guild other than "SERVER" just type "buy area"
 
 to adjust the buy/sell access level:
-as the guild master (rank 0) you will type /guild set buy 1
+as the guild master (rank 0) you will type "set buy 1"
      - this will allow guild members who are rank 1 to access buy commands
      - the Guild Master is Rank 0 . each rank +1 is 1 rank below Guild Master. i.e.(Rank 1 = officer, Rank 2 = veteran,
        Rank 3 = member, rank 4 = initiate).
-to set the sell command type /guild set sell 1 
+to set the sell command type "set sell 1" 
 
 to change settings as the Admin:
 it is basicly the same as a Guildmaster
-to change amount of farms per location just type /guild set farm_L 2
-     now you may have 2 farms per location.
-use "/guild help set" to list available settings you may change with a basic description and example
-use "/guild help farm_L" to get specific help with changing something rather than a full screen from "help set".
+to change amount of farms per location just type "set farm_L 2"
+`farm_L` is mount limit. now you may have 2 farms per location.
+use "help set" to list available settings you may change with a basic description and example
+use "help farm_L" to get specific help with changing something rather than a full screen from "help set".
 the GM_minimum setting is the minimum level a gm must be to acces gm commands.
 the GM_admin is the GM rank of the admin. this sets what rank is required to access admin settings. can only be changed manually in the sql.
 
 The "reload table" command will reload all the tables for the system in case something goes out of sync
 
 the teleporter:
-to teleport just type "/guild gtele x" where x == location id
+to teleport just type "gtele x" where x == location id
 ??id??
 ok each location has a unique location id. so when you use the "info" command it will say loc ID: xxxxx
      the xxxx is the location id. yes it can get up into the 4 digits. I don't know how many unique combinations
@@ -51,5 +50,5 @@ ok each location has a unique location id. so when you use the "info" command it
 I have added an "OPTIONAL" feature ::: flag_require
 this will set the system to require that the invading force MUST clear ALL guards before they can take a flag.
 to turn this feature on :
-     as ADMIN type "/guild set flag_require 1"  turns it on
-     as ADMIN type "/guild set flag_require 0"  turns it off
+     as ADMIN type "set flag_require 1"  turns it on
+     as ADMIN type "set flag_require 0"  turns it off
