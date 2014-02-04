@@ -20,7 +20,7 @@ USE `guild_warz`;
 DROP TABLE IF EXISTS `commands`;
 CREATE TABLE IF NOT EXISTS `commands` (
   `guild` varchar(50) NOT NULL DEFAULT '' COMMENT 'Do Not Touch',
-  `commands` varchar(10) NOT NULL DEFAULT 'commands',
+  `commands` varchar(10) NOT NULL DEFAULT 'gcommands',
   `info_loc` varchar(10) NOT NULL DEFAULT 'info',
   `list_loc` varchar(10) NOT NULL DEFAULT 'list',
   `tele` varchar(6) NOT NULL DEFAULT 'gtele',
