@@ -8,7 +8,7 @@
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
 -- ***m***********  This is For  *****************
--- ************* TRINITY/ELUNA ONLY *t************
+-- *************** Arcemu/Ale ONLY *t*************
 -- *♠*******************4***********************♠*
 -- *b* Please Do Not Remove any of the credits ***
 -- ****** or attempt to repost as your own **2****
