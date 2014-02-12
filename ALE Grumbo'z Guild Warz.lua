@@ -8,7 +8,7 @@
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
 -- ***m***********  This is For  *****************
--- *************** Arcemu/Ale ONLY *t*************
+-- ************* Arcemu/ALE ONLY *t************
 -- *♠*******************4***********************♠*
 -- *b* Please Do Not Remove any of the credits ***
 -- ****** or attempt to repost as your own **2****
@@ -232,6 +232,16 @@ end
 
 RegisterServerHook(18, Newguildgift)
 
+function plrFunction(eventId, plr)
+
+	local xFaction = plr:GetFaction()
+	GGW[plr:GetAccountName()] = {
+					faction = xFaction
+								};
+end
+								
+RegisterServerHook(19, plrFaction)
+
 function GWcommands(event, player, msg, type, language)
 local k = 0
 local ChatCache = {}
@@ -341,12 +351,12 @@ print(player:GetGmRank())
 				player:SendBroadcastMessage("|cff00cc00lock "..GWCOMM["SERVER"].loc.."         -locks a location from purchase.|r")
 				player:SendBroadcastMessage("*************************************")
 				player:SendBroadcastMessage("ADMIN settings")
-				player:SendBroadcastMessage("|cff00cc00ADMIN Level Access: "..GWCOMM["SERVER"].GM_admin..".|r")
+				player:SendBroadcastMessage("|cff00cc00ADMIN ACCESS LEVEL: "..GWCOMM["SERVER"].GM_admin..".|r")
 				player:SendBroadcastMessage("|cff00cc00Minimum GM Level Access: "..GWCOMM["SERVER"].GM_minimum..".|r")
 				player:SendBroadcastMessage("|cff00cc00Pig Payz: "..GWCOMM["SERVER"].pig_payz..".|r")
 				player:SendBroadcastMessage("|cff00cc00New Guild Gift amount: "..GWCOMM["SERVER"].gift_count.." .|r")
 				player:SendBroadcastMessage("|cff00cc00Flag require = "..GWCOMM["SERVER"].flag_require.." .|r")
-				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy.." .|r")
+--				player:SendBroadcastMessage("|cff00cc00Anarchy = "..GWCOMM["SERVER"].anarchy..--"--(--NOT SUPPORTED BY ArcEmu...--).|r")
 				player:SendBroadcastMessage("*************************************")
 			end
 		return false;
@@ -395,7 +405,7 @@ print(player:GetGmRank())
 				player:SendBroadcastMessage("|cff00cc00Entry:     farm:     barracks:     Hall:     Guards:     Pigs:          Zone value:|r")
 				
 				repeat
-					local Gloc = Glocdb:GetUInt32(0)
+					local Gloc = Glocdb:GetColumn(0):GetLong()
 					local Xzoneprice=(GWCOMM["SERVER"].loc_cost)+(GWCOMM["SERVER"].farm_cost*GWARZ[Gloc].farm_count)+(GWCOMM["SERVER"].barrack_cost*GWARZ[Gloc].barrack_count)+(GWCOMM["SERVER"].hall_cost*GWARZ[Gloc].hall_count)+(GWCOMM["SERVER"].pig_cost*GWARZ[Gloc].pig_count)
 					player:SendBroadcastMessage("|cff00cc00"..Gloc.."            "..GWARZ[Gloc].farm_count.."            "..GWARZ[Gloc].barrack_count.."            "..GWARZ[Gloc].hall_count.."            "..GWARZ[Gloc].guard_count.."            "..GWARZ[Gloc].pig_count.."            "..Xzoneprice.."|r")
 					yentry = yentry+1
@@ -996,12 +1006,12 @@ function TransferFlag(player, locid, go)
 		player:SendBroadcastMessage("|cff00cc00Brought to you by Grumbo of BloodyWow.|r")
 		return false;
 	end
-	if((player:GetGuildName()==GWARZ[locid].guild_name)or((GWCOMM["SERVER"].anarchy==0)and(player:GetTeam()==GWARZ[locid].team)))then
+	if((player:GetGuildName()==GWARZ[locid].guild_name)or(player:GetTeam()==GWARZ[locid].team))then -- ((GWCOMM["SERVER"].anarchy==0)and))then
 		player:SendBroadcastMessage("|cff00cc00"..GWARZ[locid].guild_name.." own\'s this location.|r")
 		player:SendBroadcastMessage("|cff00cc00Grumbo\'z Guild Warz System.|r")
 		return false;
 	end
-	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
+	if((player:GetTeam()~=GWARZ[locid].team)and(player:IsInGuild()==true))then -- or((player:GetTeam()==GWARZ[locid].team)and(GWCOMM["SERVER"].anarchy==1))then
 
 		if(GWARZ[locid].guard_count~=0)and(GWCOMM["SERVER"].flag_require==1)then  -- this lil check added to make it tougher to take the land. idea by renatokeys
 			player:SendBroadcastMessage("!!..You must clear ALL guards..!!")
@@ -1046,33 +1056,66 @@ RegisterGameObjectEvent(187433, 4, "Hordeflag")
 -- to keep them from the flag. I would love to add it.
 
 --[[
-this is part of the Anarchy switch
+this is part of the Anarchy System -- requires a detect motion type hook/event
 so far only Eluna supports this(if players not of xx guild get near guards then hell breaks loose)
 
 function Guardffa(eventid, creature, player)
-	local LocId = GetLocationId(creature)
-	
+local LocId = GetLocationId(player)
+
+
 	if(LocId == nil)then
-		LocId = CreateLocation(creature:GetMapId(), creature:GetAreaId(), creature:GetZoneId())
+		LocId = CreateLocation(player:GetMapId(), player:GetAreaId(), player:GetZoneId())
 	end
-	
+
+
 	if(player:GetObjectType()=="Player")then
-		if(player:GetGuildName() ~= GWARZ[LocId].guild_name)then
+
+
+		if(player:IsInGuild()==true)then
+
+
 			if(GWCOMM["SERVER"].anarchy==1)then
-				player:SetFFA(1)
-				player:SetPvP(1)
-				creature:SetFFA(1)
-				creature:SetPvP(1)
+
+
+				if(player:GetGuildName()~=GWARZ[LocId].guild_name)then
+
+
+					if(GWARZ[LocId].team < 2)then
+
+
+						if(creature:IsWithinDistInMap(player, 45))then
+							if(GWARZ[LocId].team==0)then -- faction 57
+								player:SetFaction(2)
+								player:SetFFA(1)
+								player:SetPvP(1)
+								creature:AttackStart(player)
+							end
+							if(GWARZ[LocId].team==1)then -- faction 85
+								player:SetFaction(1)
+								player:SetFFA(1)
+								player:SetPvP(1)
+								creature:AttackStart(player)
+							end
+						end
+					else
+						player:SetFaction(GGW[player:GetAccountId()].faction)
+					end
+				else
+					player:SetFaction(GGW[player:GetAccountId()].faction)
+					player:SetFFA(1)
+					player:SetPvP(1)
+				end
 			else
+				player:SetFaction(GGW[player:GetAccountId()].faction)
 			end
 		else
 		end
 	else
-	end 
+	end
 end
 
-RegisterCreatureEvent(49001, 2, Guardffa)
-RegisterCreatureEvent(49002, 2, Guardffa)
+RegisterCreatureEvent(49001, 27, Guardffa)
+RegisterCreatureEvent(49002, 27, Guardffa)
 ]]--
 
 
