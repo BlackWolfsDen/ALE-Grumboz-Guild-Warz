@@ -26,11 +26,10 @@ to purchase a location not owned by another guild other than "SERVER" just type 
 to adjust the buy/sell access level:
 
      as the guild master (rank 0) you will type "set buy 1"
-          - this will allow guild members who are rank 1 to access buy commands
-          - the Guild Master is Rank 0 . each rank +1 is 1 rank below Guild Master. i.e.(Rank 1 = officer, Rank 2 = veteran,
-            Rank 3 = member, rank 4 = initiate).
-            
-to set the sell command type "set sell x" 
+          - this will allow guild members who are rank 1 to access buy/sell commands
+          - the Guild Master is Rank 0 . each rank +1 is 1 rank below Guild Master. i.e.(Rank 1 = officer,
+            Rank 2 = veteran,Rank 3 = member, rank 4 = initiate).
+     to set the sell command type "set sell x" 
 
 to change settings as the Admin:
 
