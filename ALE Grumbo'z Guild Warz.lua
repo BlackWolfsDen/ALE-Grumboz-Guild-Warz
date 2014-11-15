@@ -2,20 +2,20 @@
 -- ********© Grumbo'z Guild Warz System™ ©********	
 -- **** Brought to you by Grumbo of BloodyWoW *l**
 -- **r*************** slp13at420 ****p************
--- ***Foereaper***  Ty Eluna guyz  ****Rochet2****
+-- ***Foereaper***  Ty EmuDevS guyz  ***Rochet2***
 -- *************** Ty Emudevs.com  *********1*****
 -- **u******************♠*********3***************
 -- *********************♠*************************
 -- ********** This is NOT a C++ SCRIPT **a********
 -- ***m***********  This is For  *****************
--- ************* TRINITY/ELUNA ONLY *t************
+-- *************** ArcEmu/ALE ONLY *t*************
 -- *♠*******************4***********************♠*
 -- *b* Please Do Not Remove any of the credits ***
 -- **** and/or attempt to release as your own **2*
 -- ***o******************©*************0**********
 -- **************** First Public *****************
 -- *********** release date 03-10-2013 ***********
--- ***********************************************
+-- **********************©************************
 
 print("\n-----------------------------------")
 print("Grumbo'z Guild Warz System Loading:\n")
@@ -39,7 +39,7 @@ local tele_version = 1.50
 local pvp_version = 3.80
 
 local Server = "SERVER"
-local guild_warz_DB = "guild_warz_335a" -- Must match unique name if running on multiple cores i.e. guild_warz_3.3.5a_1 
+local guild_warz_DB = "guild_warz_335a" -- Must match unique DB name if running on multiple cores i.e. guild_warz_3.3.5a_1 
 
 GWCOMM = {};
 GWARZ = {};
