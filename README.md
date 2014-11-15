@@ -16,7 +16,7 @@ ok now how to basics:
 
 basic commands are:
 
-     type commands for a complete list of commands available to you.
+     type `commands` for a complete list of commands available to you.
      the buy commands are accessible by guild members of a certain level chosen by the guild master
      the sell commands are accessible by guild members of a certain level chosen by the guild master
      the guild master can change what ranks can access buy/sell commands by using the set command.
