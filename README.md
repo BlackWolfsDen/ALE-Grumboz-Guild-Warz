@@ -10,6 +10,7 @@ what is this ... well this is an alternate perspective for PvP. you can PvP bg'z
 
 ok now how to basics:
 first of course you must be in a guild.
+next you MUST use /Guild chat channel.
 basic commands are:
 
      type commands for a complete list of commands available to you.
