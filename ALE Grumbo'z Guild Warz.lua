@@ -58,7 +58,7 @@ local Ghsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".help;");
 			description = Ghsql:GetColumn(2):GetString(),
 			example = Ghsql:GetColumn(3):GetString(),
 			command_level = Ghsql:GetColumn(4):GetLong(),
-										};
+		};
 		until not Ghsql:NextRow()
 	end
 
@@ -117,7 +117,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 			spawn_timer = Gcsql:GetColumn(47):GetLong(),
 			guild_id = Gcsql:GetColumn(48):GetLong(),
 			guild_invite = Gcsql:GetColumn(49):GetLong(),
-						};
+		};
 		until not Gcsql:NextRow()
 	end
 
@@ -143,7 +143,7 @@ local Gcsql =  WorldDBQuery("SELECT * FROM "..guild_warz_DB..".commands;");
 				flag_id = Gwsql:GetColumn(14):GetLong(),
 				spawn_time = Gwsql:GetColumn(15):GetLong(),
 				guild_id = Gwsql:GetColumn(16):GetLong(),
-							};
+			};
 		until not Gwsql:NextRow()
 	end
 end
