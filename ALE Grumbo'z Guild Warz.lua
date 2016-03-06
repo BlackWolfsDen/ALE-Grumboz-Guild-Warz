@@ -462,6 +462,7 @@ function GWcommands(event, player, msg, type, language)
 			
 			if(ChatCache[1]==GWCOMM[Guildname].version)then
 				player:SendBroadcastMessage("*******************************")
+				player:SendBroadcastMessage("*              Ale            *");
 				player:SendBroadcastMessage("|cff00cc00Grumbo'z Guild Warz. VER : "..GW_version.."|r")
 				player:SendBroadcastMessage("|cff00cc00Core :: "..core_version..".|r")
 				player:SendBroadcastMessage("|cff00cc00PigPayz :: "..pigpayz_version..".|r")
